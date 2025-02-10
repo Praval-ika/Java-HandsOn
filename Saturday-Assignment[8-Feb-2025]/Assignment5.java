@@ -8,6 +8,11 @@ class Book{
 	String author;
 	long ISBN;
 	
+	Book()
+	{
+		
+	}
+	
 	Book(String title,String author,long ISBN)
 	{
 		this.title = title;
@@ -52,21 +57,43 @@ public class Assignment5 {
 		// TODO Auto-generated method stub
 		Scanner sc = new Scanner(System.in);
 		
-        System.out.println("1.Add a book 2. Delete a book 3. Display the books.")
-		
-		String title = sc.nextLine();
-		String author = sc.nextLine();
-		long ISBN = sc.nextLong();
-		
-		Book book = new Book(title,author,ISBN);
-		book.addBooks();
+		while(true){
+        System.out.println("1.Add a book 2. Delete a book 3. Display the books.");
         
+        int value = sc.nextInt();
+        
+        switch(value) {
+        
+        case 1:
 		
+		//String title = sc.next();
+		//String author = sc.next();
+		//long ISBN = sc.nextLong();
+		
+		Book book = new Book(sc.next(),sc.next(),sc.nextLong());
+		book.addBooks();
+		break;
+        
+        case 2:
+		
+        Book book1 = new Book();
 		long choice = sc.nextLong();
-		book.deleteBooks(choice);
-	      	
+		book1.deleteBooks(choice);
+		break;
 		
-		sc.close();
+        case 3:
+        	Book book2 = new Book();
+        	book2.display();
+        	break;	
+        case 4:
+        	return;
+        	//break;
+        	
+        }
+        
+		}
+	      	
+		//sc.close();
+		//}
 	}
-
 }
