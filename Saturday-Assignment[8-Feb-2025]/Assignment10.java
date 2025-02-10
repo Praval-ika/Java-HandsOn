@@ -3,7 +3,7 @@ package com.celcom.assignments;
 class Shape{
 	int getArea()
 	{
-		
+		return 0;
 	}
 }
 
