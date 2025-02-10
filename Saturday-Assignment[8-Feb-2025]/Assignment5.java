@@ -44,7 +44,7 @@ class Book{
 		{
 			if(b1.ISBN == choice)
 			{
-				b1 = null;
+				b1.remove(b1);
 				break;
 			}
 		}
