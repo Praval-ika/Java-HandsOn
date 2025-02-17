@@ -17,7 +17,8 @@ public class Assignment10 implements Cloneable {
 		{
 			list.add(sc.next());
 		}
-		List<String> list2 = new LinkedList<>(list);
+		List<String> list2 = new LinkedList<>();
+		list2.addall(list);
 	    System.out.println(list);
 	    System.out.println(list2);
 	    System.out.println(list.hashCode());
