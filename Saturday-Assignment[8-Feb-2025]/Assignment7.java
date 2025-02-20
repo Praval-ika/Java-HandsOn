@@ -6,7 +6,6 @@ import java.util.HashMap;
 
 class Account{
 	
-	//long accountNumber;
 	String accountHolderName;
 	String branchName;
 	long phoneNumber;
@@ -18,26 +17,14 @@ class Account{
 		this.branchName = branchName;
 		this.phoneNumber = phoneNumber;
 		this.balance = 0.0;
-	}
-	
-//	public void deposit(double amount) {
-//		balance += amount;
-//	}
-//	
-//	public void withDraw(double amount)
-//	{
-//		balance -= amount;
-//	}
-	
+	}	
 }
 
 
 class Bank{
 	
 	private Map<Long,Account> bank = new HashMap<>();
-    Scanner sc = new Scanner(System.in);
-	//Account account = new Account(sc.nextLong(), sc.next(), sc.next(), sc.nextLong()); // new account creation.
-	
+        Scanner sc = new Scanner(System.in);	
     
     public void addAccount()
     {
@@ -105,7 +92,6 @@ class Bank{
 		if(bank.containsKey(accountNumber)) {
 			
 			System.out.println("Account Holder Name :" + bank.get(accountNumber).accountHolderName);
-			//System.out.println("Account Number :" + bank.get(accountNumber).accountNumber);
 			System.out.println("Branch Name :" + bank.get(accountNumber).branchName);
 			System.out.println("Account Balance :" + bank.get(accountNumber).balance);
 			System.out.println("Customer Phone Number :" + bank.get(accountNumber).phoneNumber );
@@ -119,7 +105,6 @@ class Bank{
 		for(Account allDetails : bank.values()) {
 			
 			System.out.println("Account HolderName :" + allDetails.accountHolderName);
-			//System.out.println("Account Number :" + allDetails.accountNumber);
 			System.out.println("Branch Name :" + allDetails.branchName);
 			System.out.println("Customer Phone Number :" + allDetails.phoneNumber);
 			System.out.println("Account Balance :" + allDetails.balance);
@@ -132,7 +117,7 @@ class Bank{
 		long accountNumber = sc.nextLong();
 		if(bank.containsKey(accountNumber)) {
 			bank.remove(accountNumber);
-			System.out.println("Account removed Successfully.");
+			System.out.println("Account deleted Successfully.");
 			return;
 		}
 		System.out.println("Account not found to delete.");
