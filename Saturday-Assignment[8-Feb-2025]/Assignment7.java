@@ -103,7 +103,7 @@ public class Assignment7 {
 		while(true) {
 			
 			System.out.println("Please enter your choice");
-			System.out.println(" 1.Deposit\n 2.Withdraw\n 3.Get All Account Details\n 4.Get Your AccountDetails\n 5. Add Account 6.Exit");
+			System.out.println(" 1.Deposit\n 2.Withdraw\n 3.Get All Account Details\n 4.Get Your AccountDetails\n 5. Add Account\n 6.Exit");
 			int choice = sc.nextInt();
 			
 			switch(choice) {
