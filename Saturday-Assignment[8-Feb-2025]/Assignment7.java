@@ -130,6 +130,7 @@ public class Assignment7 {
 				System.out.println("Enter account number:\n AccountHoldername:\n branchName:\n and PhoneNumber: ");
 				Bank bank = new Bank();
 				bank.setData();	
+				break;	
 			case 6:
 				return;
 			default:
