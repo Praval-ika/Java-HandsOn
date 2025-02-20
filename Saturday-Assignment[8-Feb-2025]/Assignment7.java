@@ -6,13 +6,13 @@ import java.util.HashMap;
 
 class Account{
 	
-	int accountNumber;
+	long accountNumber;
 	String accountHolderName;
 	String branchName;
 	long phoneNumber;
 	double balance;
 	
-	Account(int accountNumber, String accountHolderName, String branchName,long phoneNumber){
+	Account(long accountNumber, String accountHolderName, String branchName,long phoneNumber){
 		
 		this.accountNumber= accountNumber;
 		this.accountHolderName = accountHolderName;
@@ -35,8 +35,7 @@ class Account{
 class Bank{
 	
 	private Map<Integer,Account> bank = new HashMap<>();
-        Scanner sc = new Scanner(System.in);
-	Account account = new Account(sc.nextInt(), sc.next(), sc.next(), sc.nextLong());
+        //Scanner sc = new Scanner(System.in);
 	
 	public void deposit(int amount)
 	{       
@@ -88,14 +87,15 @@ public class Assignment7 {
 	public static void main(String args[]) {
 		System.out.println("Enter account number:\n AccountHoldername:\n branchName:\n and PhoneNumber: ");
 		Scanner sc = new Scanner(System.in);
+		Account account = new Account(sc.nextLong(), sc.next(), sc.next(), sc.nextLong()); // new account creation.
 		Bank bank = new Bank();
+		bank.setData(); //checks whether exists or not
 		
 		while(true) {
 			
 			System.out.println("Please enter your choice");
 			System.out.println(" 1.Deposit\n 2.Withdraw\n 3.Get All Account Details\n 4.Get Your AccountDetails\n 5.Exit");
 			int choice = sc.nextInt();
-			bank.setData();
 			
 			switch(choice) {
 			
