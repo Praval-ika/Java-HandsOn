@@ -39,9 +39,13 @@ class Bank{
 	Account account = new Account(sc.nextLong(), sc.next(), sc.next(), sc.nextLong()); // new account creation.
 	
 	public void deposit(long amount)
-	{       
+	{       if(amount<1){
+			System.out.println("Enter valid amount.");
+		}
+	        else{
 		account.deposit(amount);
 		System.out.println("Amount credited successfully.");
+		}
 	}
 	
 	public void withDraw(long amount) {
@@ -99,7 +103,7 @@ public class Assignment7 {
 		while(true) {
 			
 			System.out.println("Please enter your choice");
-			System.out.println(" 1.Deposit\n 2.Withdraw\n 3.Get All Account Details\n 4.Get Your AccountDetails\n 5.Exit");
+			System.out.println(" 1.Deposit\n 2.Withdraw\n 3.Get All Account Details\n 4.Get Your AccountDetails\n 5. Add Account 6.Exit");
 			int choice = sc.nextInt();
 			
 			switch(choice) {
@@ -123,6 +127,10 @@ public class Assignment7 {
 				bank.getCurrentAccountDetails();
 				break;
 			case 5:
+				System.out.println("Enter account number:\n AccountHoldername:\n branchName:\n and PhoneNumber: ");
+				Bank bank = new Bank();
+				bank.setData();	
+			case 6:
 				return;
 			default:
 				System.out.println("Please Enter a Valid Choice");
