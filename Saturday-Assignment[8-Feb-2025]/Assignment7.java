@@ -20,11 +20,11 @@ class Account{
 		this.phoneNumber = phoneNumber;
 	}
 	
-	public void deposit(long amount) {
+	public void deposit(double amount) {
 		balance += amount;
 	}
 	
-	public void withDraw(long amount)
+	public void withDraw(double amount)
 	{
 		balance -= amount;
 	}
@@ -38,7 +38,7 @@ class Bank{
         Scanner sc = new Scanner(System.in);
 	Account account = new Account(sc.nextLong(), sc.next(), sc.next(), sc.nextLong()); // new account creation.
 	
-	public void deposit(long amount)
+	public void deposit(double amount)
 	{       if(amount<1){
 			System.out.println("Enter valid amount.");
 		}
@@ -48,7 +48,7 @@ class Bank{
 		}
 	}
 	
-	public void withDraw(long amount) {
+	public void withDraw(double amount) {
 
 		if(amount<1){
 			System.out.println("Enter valid amount.");
@@ -110,12 +110,12 @@ public class Assignment7 {
 			
 			case 1:
 				System.out.println("Please Enter your Amount for Deposit");
-				bank.deposit(sc.nextLong());
+				bank.deposit(sc.nextDouble());
 				break;
 				
 			case 2:
 				System.out.println("Please Enter Amount for Withdrawal");
-				bank.withDraw(sc.nextLong());
+				bank.withDraw(sc.nextDouble());
 				break;
 				
 			case 3:
