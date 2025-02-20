@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 class Account{
 	
+	//long accountNumber;
 	String accountHolderName;
 	String branchName;
 	long phoneNumber;
@@ -18,14 +19,26 @@ class Account{
 		this.phoneNumber = phoneNumber;
 		this.balance = 0.0;
 	}
+	
+//	public void deposit(double amount) {
+//		balance += amount;
+//	}
+//	
+//	public void withDraw(double amount)
+//	{
+//		balance -= amount;
+//	}
+	
 }
 
 
 class Bank{
 	
 	private Map<Long,Account> bank = new HashMap<>();
-        Scanner sc = new Scanner(System.in);
+    Scanner sc = new Scanner(System.in);
+	//Account account = new Account(sc.nextLong(), sc.next(), sc.next(), sc.nextLong()); // new account creation.
 	
+    
     public void addAccount()
     {
     	System.out.println("Enter the Name,BranchName and PhoneNumber: ");
@@ -92,10 +105,13 @@ class Bank{
 		if(bank.containsKey(accountNumber)) {
 			
 			System.out.println("Account Holder Name :" + bank.get(accountNumber).accountHolderName);
+			//System.out.println("Account Number :" + bank.get(accountNumber).accountNumber);
 			System.out.println("Branch Name :" + bank.get(accountNumber).branchName);
 			System.out.println("Account Balance :" + bank.get(accountNumber).balance);
-			System.out.println("Customer Phone Number :" + bank.get(accountNumber).phoneNumber );	
+			System.out.println("Customer Phone Number :" + bank.get(accountNumber).phoneNumber );
+			return;
 		}
+		System.out.println("Account not found.");
 	}
 	
 	public void getAllAccountDetails() {
@@ -103,10 +119,22 @@ class Bank{
 		for(Account allDetails : bank.values()) {
 			
 			System.out.println("Account HolderName :" + allDetails.accountHolderName);
+			//System.out.println("Account Number :" + allDetails.accountNumber);
 			System.out.println("Branch Name :" + allDetails.branchName);
 			System.out.println("Customer Phone Number :" + allDetails.phoneNumber);
 			System.out.println("Account Balance :" + allDetails.balance);
 			}
+	}
+	
+	public void deleteAccount() {
+		
+		System.out.println("Enter the account Number: ");
+		long accountNumber = sc.nextLong();
+		if(bank.containsKey(accountNumber)) {
+			bank.remove(accountNumber);
+			return;
+		}
+		System.out.println("Account not found to delete.");
 	}
 }
 
@@ -117,7 +145,7 @@ public class Assignment7 {
 		Bank bank = new Bank();
 		
 		while(true) {
-			System.out.println(" 1.Add Account\n 2.Deposit\n 3.Withdraw\n 4.Get Your AccountDetails\n 5.Get All Account Details\n 6.Exit");
+			System.out.println(" 1.Add Account\n 2.Deposit\n 3.Withdraw\n 4.Get Your AccountDetails\n 5.Get All Account Details\n 6.Delete Account\n 7.Exit");
 			System.out.println("Please enter your choice");
 			
 			int choice = sc.nextInt();
@@ -143,6 +171,9 @@ public class Assignment7 {
 					bank.getAllAccountDetails();
 					break;
 				case 6:
+					bank.deleteAccount();
+					break;
+				case 7:
 					return;
 			
 				default:
