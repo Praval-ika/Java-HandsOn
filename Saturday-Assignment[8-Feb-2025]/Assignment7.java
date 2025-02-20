@@ -6,29 +6,18 @@ import java.util.HashMap;
 
 class Account{
 	
-	long accountNumber;
 	String accountHolderName;
 	String branchName;
 	long phoneNumber;
 	double balance;
 	
-	Account(long accountNumber, String accountHolderName, String branchName,long phoneNumber){
+	Account(String accountHolderName, String branchName,long phoneNumber){
 		
-		this.accountNumber= accountNumber;
 		this.accountHolderName = accountHolderName;
 		this.branchName = branchName;
 		this.phoneNumber = phoneNumber;
+		this.balance = 0.0;
 	}
-	
-	public void deposit(double amount) {
-		balance += amount;
-	}
-	
-	public void withDraw(double amount)
-	{
-		balance -= amount;
-	}
-	
 }
 
 
@@ -36,47 +25,77 @@ class Bank{
 	
 	private Map<Long,Account> bank = new HashMap<>();
         Scanner sc = new Scanner(System.in);
-	Account account = new Account(sc.nextLong(), sc.next(), sc.next(), sc.nextLong()); // new account creation.
 	
-	public void deposit(double amount)
-	{       if(amount<1){
-			System.out.println("Enter valid amount.");
-		}
+    public void addAccount()
+    {
+    	System.out.println("Enter the Name,BranchName and PhoneNumber: ");
+    	String name = sc.next();
+    	String branchName = sc.next();
+    	long phoneNum = sc.nextLong();
+    	
+    	Account account = new Account(name,branchName,phoneNum);
+    	long newAccountNum = bank.size()+1;
+    	bank.put(newAccountNum, account);
+    	System.out.println("Account added Successfully \n Your Account Number is : " + newAccountNum);
+    }
+    
+  
+    
+	public void deposit(){
+		System.out.println("Enter the account number");
+		long accountNumber = sc.nextLong();
+		System.out.println("Enter the amount");
+		double amount1 = sc.nextDouble();
+		if(bank.containsKey(accountNumber)) {
+			if(amount1<1){
+				System.out.println("Enter valid amount.");
+			}
 	        else{
-		account.deposit(amount);
-		System.out.println("Amount credited successfully.");
+	        	Account account = bank.get(accountNumber);
+	        	account.balance += amount1;
+	        	System.out.println("Amount credited successfully.");
+	        	return;
+	        }
 		}
-	}
-	
-	public void withDraw(double amount) {
-
-		if(amount<1){
-			System.out.println("Enter valid amount.");
-		}
-		else{
-		account.withDraw(amount);
-		System.out.println("Amount Debited successfully.");
-		}
-	}
-	
-	public void setData() {
+		System.out.println("Account does not found");
 		
-		if(bank.containsKey(account.accountNumber))
-		{
-			System.out.println("Account Already Exist");
-		}
-		else {
-			bank.put(account.accountNumber, account);
-		}
 	}
+	
+	public void withDraw() {
+		System.out.println("Enter the account number");
+		long accountNumber = sc.nextLong();
+		System.out.println("Enter the amount");
+		double amount1 = sc.nextDouble();
+		if(bank.containsKey(accountNumber)) {
+			if(amount1<1){
+				System.out.println("Enter valid amount.");
+			}
+			else{
+				Account account = bank.get(accountNumber);
+				if(account.balance<amount1) {
+					System.out.println("Insufficient balance");
+					return;
+				}
+				account.balance -= amount1;
+				System.out.println("Amount Debited successfully.");
+				return;
+			}
+		}
+		System.out.println("Account does not found");
+	}
+	
+	
 	
 	public void getCurrentAccountDetails() {
-		
-		System.out.println("Account Holder Name :" + bank.get(account.accountNumber).accountHolderName);
-		System.out.println("Account Number :" + bank.get(account.accountNumber).accountNumber);
-		System.out.println("Branch Name :" + bank.get(account.accountNumber).branchName);
-		System.out.println("Account Balance :" + bank.get(account.accountNumber).balance);
-		System.out.println("Customer Phone Number :" + bank.get(account.accountNumber).phoneNumber );		
+		System.out.println("Enter the account Number: ");
+		long accountNumber = sc.nextLong();
+		if(bank.containsKey(accountNumber)) {
+			
+			System.out.println("Account Holder Name :" + bank.get(accountNumber).accountHolderName);
+			System.out.println("Branch Name :" + bank.get(accountNumber).branchName);
+			System.out.println("Account Balance :" + bank.get(accountNumber).balance);
+			System.out.println("Customer Phone Number :" + bank.get(accountNumber).phoneNumber );	
+		}
 	}
 	
 	public void getAllAccountDetails() {
@@ -84,7 +103,6 @@ class Bank{
 		for(Account allDetails : bank.values()) {
 			
 			System.out.println("Account HolderName :" + allDetails.accountHolderName);
-			System.out.println("Account Number :" + allDetails.accountNumber);
 			System.out.println("Branch Name :" + allDetails.branchName);
 			System.out.println("Customer Phone Number :" + allDetails.phoneNumber);
 			System.out.println("Account Balance :" + allDetails.balance);
@@ -95,45 +113,40 @@ class Bank{
 public class Assignment7 {
 
 	public static void main(String args[]) {
-		System.out.println("Enter account number:\n AccountHoldername:\n branchName:\n and PhoneNumber: ");
 		Scanner sc = new Scanner(System.in);
 		Bank bank = new Bank();
-		bank.setData(); //checks whether account exists or not
 		
 		while(true) {
-			
+			System.out.println(" 1.Add Account\n 2.Deposit\n 3.Withdraw\n 4.Get Your AccountDetails\n 5.Get All Account Details\n 6.Exit");
 			System.out.println("Please enter your choice");
-			System.out.println(" 1.Deposit\n 2.Withdraw\n 3.Get All Account Details\n 4.Get Your AccountDetails\n 5. Add Account\n 6.Exit");
+			
 			int choice = sc.nextInt();
 			
 			switch(choice) {
+				case 1:
+					bank.addAccount();
+					break;
+				
+				case 2:
+					bank.deposit();
+					break;
+				
+				case 3:
+					bank.withDraw();
+					break;
+				
+				case 4:
+					bank.getCurrentAccountDetails();
+					break;
+				
+				case 5:
+					bank.getAllAccountDetails();
+					break;
+				case 6:
+					return;
 			
-			case 1:
-				System.out.println("Please Enter your Amount for Deposit");
-				bank.deposit(sc.nextDouble());
-				break;
-				
-			case 2:
-				System.out.println("Please Enter Amount for Withdrawal");
-				bank.withDraw(sc.nextDouble());
-				break;
-				
-			case 3:
-				System.out.println("Get All Account Details");
-				bank.getAllAccountDetails();
-				break;
-				
-			case 4:
-				bank.getCurrentAccountDetails();
-				break;
-			case 5:
-				System.out.println("Enter account number:\n AccountHoldername:\n branchName:\n and PhoneNumber: ");
-				bank.setData();	
-				break;	
-			case 6:
-				return;
-			default:
-				System.out.println("Please Enter a Valid Choice");
+				default:
+					System.out.println("Please Enter a Valid Choice");
 				
 			}
 	    }
