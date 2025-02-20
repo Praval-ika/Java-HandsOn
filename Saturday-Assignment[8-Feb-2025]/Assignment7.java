@@ -34,7 +34,7 @@ class Account{
 
 class Bank{
 	
-	private Map<Integer,Account> bank = new HashMap<>();
+	private Map<Long,Account> bank = new HashMap<>();
         Scanner sc = new Scanner(System.in);
 	Account account = new Account(sc.nextLong(), sc.next(), sc.next(), sc.nextLong()); // new account creation.
 	
