@@ -20,11 +20,11 @@ class Account{
 		this.phoneNumber = phoneNumber;
 	}
 	
-	public void deposit(int amount) {
+	public void deposit(long amount) {
 		balance += amount;
 	}
 	
-	public void withDraw(int amount)
+	public void withDraw(long amount)
 	{
 		balance -= amount;
 	}
@@ -35,18 +35,24 @@ class Account{
 class Bank{
 	
 	private Map<Integer,Account> bank = new HashMap<>();
-        //Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
+	Account account = new Account(sc.nextLong(), sc.next(), sc.next(), sc.nextLong()); // new account creation.
 	
-	public void deposit(int amount)
+	public void deposit(long amount)
 	{       
 		account.deposit(amount);
 		System.out.println("Amount credited successfully.");
 	}
 	
-	public void withDraw(int amount) {
-		
+	public void withDraw(long amount) {
+
+		if(amount<1){
+			System.out.println("Enter valid amount.");
+		}
+		else{
 		account.withDraw(amount);
 		System.out.println("Amount Debited successfully.");
+		}
 	}
 	
 	public void setData() {
@@ -87,7 +93,6 @@ public class Assignment7 {
 	public static void main(String args[]) {
 		System.out.println("Enter account number:\n AccountHoldername:\n branchName:\n and PhoneNumber: ");
 		Scanner sc = new Scanner(System.in);
-		Account account = new Account(sc.nextLong(), sc.next(), sc.next(), sc.nextLong()); // new account creation.
 		Bank bank = new Bank();
 		bank.setData(); //checks whether exists or not
 		
@@ -101,12 +106,12 @@ public class Assignment7 {
 			
 			case 1:
 				System.out.println("Please Enter your Amount for Deposit");
-				bank.deposit(sc.nextInt());
+				bank.deposit(sc.nextLong());
 				break;
 				
 			case 2:
 				System.out.println("Please Enter Amount for Withdrawal");
-				bank.withDraw(sc.nextInt());
+				bank.withDraw(sc.nextLong());
 				break;
 				
 			case 3:
