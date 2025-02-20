@@ -132,6 +132,7 @@ class Bank{
 		long accountNumber = sc.nextLong();
 		if(bank.containsKey(accountNumber)) {
 			bank.remove(accountNumber);
+			System.out.println("Account removed Successfully.");
 			return;
 		}
 		System.out.println("Account not found to delete.");
