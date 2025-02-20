@@ -94,7 +94,7 @@ public class Assignment7 {
 		System.out.println("Enter account number:\n AccountHoldername:\n branchName:\n and PhoneNumber: ");
 		Scanner sc = new Scanner(System.in);
 		Bank bank = new Bank();
-		bank.setData(); //checks whether exists or not
+		bank.setData(); //checks whether account exists or not
 		
 		while(true) {
 			
