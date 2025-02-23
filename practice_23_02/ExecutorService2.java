@@ -31,12 +31,25 @@ public class ExecutorService2 {
 		
 		ExecutorService executorservice = Executors.newFixedThreadPool(10);
 		
+		//By submit method
+		System.out.println("By submit()");
+						
+		for(int i=1;i<=50;i++) {
+		//Task task = new Task("customer "+i);
+		executorservice.submit(new Task("customer "+i));
+		}
+		
 		List<Task1> tasks = new ArrayList<>();
 		for(int i=1;i<=50;i++) {
 			tasks.add(new Task1("customer "+i));
 		}
 		//By invokeAll method
+		
+		System.out.println();
+		System.out.println();
+		
 		System.out.println("By invokeAll()"); 
+		System.out.println();
 		
 		List<Future<String>> futures = executorservice.invokeAll(tasks);
 		for(Future<String> future : futures) {
@@ -54,5 +67,4 @@ public class ExecutorService2 {
 		
 		executorservice.shutdown();
 	}
-
 }
