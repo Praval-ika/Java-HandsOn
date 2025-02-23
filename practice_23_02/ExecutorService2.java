@@ -8,6 +8,22 @@ import java.util.ArrayList;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Future;
 
+class Task implements Runnable{
+	
+	private final String name;
+	
+	Task(String name){
+		this.name = name;
+	}
+	
+	@Override
+	public void run() {
+		
+		System.out.println(name + " Plan Expiration by today." +" Executed by "+Thread.currentThread().getName());
+		
+	}
+}
+
 class Task1 implements Callable<String>{
 	
 	private final String name;
