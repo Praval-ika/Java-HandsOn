@@ -48,7 +48,7 @@ public class OrderControl {
     @PostMapping("/{id}/{flag}/{category}/{value}/{quantity}")
     public String addOrder(@RequestBody Orders64 newOrder) {
     	
-    	return "New Order Created.\n Order Id is : "+ orderService.addOrder(newOrder).getId();
+    	return "New Order Created.\n Order Id is : "+ orderService.addOrder(newOrder).getOrderId();
     }
     
     @GetMapping("/{id}/{flag}/{category}/{value}/{quantity}/{orderId}")
