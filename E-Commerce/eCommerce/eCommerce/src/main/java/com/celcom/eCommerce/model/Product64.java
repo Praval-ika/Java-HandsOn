@@ -13,11 +13,20 @@ import lombok.Data;
 public class Product64 {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="product_seq")
+	@SequenceGenerator(name="product_seq", sequenceName = "product_sequence",allocationSize = 1)
 	private int id;
 	private String name;
 	private String category;
 	private float price;
 	private int stock;
+	
+	@Transient
+	private String productId;
+	
+	public String getProductId() {
+		
+		return "PROD"+id;
+	}
 
 }
