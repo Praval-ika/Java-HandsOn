@@ -25,7 +25,7 @@ public class CustomerControl {
 	public String createCustomer(@RequestBody Customer64 customer) {
 		System.out.println(customer.toString());
 		//Customer newCustomer = customerService.createCustomer(customer);
-		return " Success : Customer Added.\n Customer Id : "+customerService.createCustomer(customer).getId();
+		return " Success : Customer Added.\n Customer Id : "+customerService.createCustomer(customer).getCustomerId();
 		
 	}
 	
@@ -39,5 +39,12 @@ public class CustomerControl {
 	public Optional<Customer64> getCustomer(@PathVariable int id) {
 		
 		return customerService.getCustomer(id);
+	}
+
+	@DeleteMapping("/{id}")
+	public String deleteCustomer(int id) {
+		
+		customerService.deleteCustomer(id);
+		return "Success : " + id +" is Deleted.";
 	}
 }
