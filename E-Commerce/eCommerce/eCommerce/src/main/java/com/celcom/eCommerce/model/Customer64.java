@@ -13,7 +13,8 @@ import lombok.Data;
 public class Customer64 {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="customer_seq")
+	@SequenceGenerator(name="customer_seq", sequenceName = "customer_sequence",allocationSize = 1)
 	private int id;
 	private String firstName;
 	private String lastName;
@@ -23,5 +24,13 @@ public class Customer64 {
 	private String paymentMethod;
 	private String paymentDetails;
 	private String status;	
+	
+	@Transient
+	private String customerId;
+	
+	public String getCustomerId() {
+		
+		return "CUST"+id;
+	}	
 	
 }
