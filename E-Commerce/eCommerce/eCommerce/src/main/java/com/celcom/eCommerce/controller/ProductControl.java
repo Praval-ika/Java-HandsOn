@@ -25,7 +25,7 @@ public class ProductControl {
 	public String createProduct(@RequestBody Product64 product) {
 		
 		//Product newProduct = productService.createProduct(product);
-		return " Success : Product Added.\n Product Id : " + productService.createProduct(product).getId();
+		return " Success : Product Added.\n Product Id : " + productService.createProduct(product).getProductId();
 	}
 	
 	@GetMapping("/products")
