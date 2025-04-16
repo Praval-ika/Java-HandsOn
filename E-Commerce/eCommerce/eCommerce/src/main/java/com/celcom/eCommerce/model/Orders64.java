@@ -17,12 +17,21 @@ import lombok.NoArgsConstructor;
 public class Orders64 {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="order_seq")
+	@SequenceGenerator(name="order_seq", sequenceName = "order_sequence",allocationSize = 1)
 	private int id;
 	int accountId;
-    int productId;
+        int productId;
 	int quantity;
 	private float price = 0.0F;
 	private String status = "New";
+	
+	@Transient
+	private String orderId;
+	
+	public String getOrderId() {
+		
+		return "ORD"+id;
+	}
 	
 }
